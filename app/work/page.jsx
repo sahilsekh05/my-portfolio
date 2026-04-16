@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { BsGithub, BsLinkedin } from "react-icons/bs";
+import { BsGithub } from "react-icons/bs";
 import {
   Tooltip,
   TooltipContent,
@@ -12,7 +12,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import Image from "next/image";
-import Link from "next/link";
 import { WorkSliderBtns } from "@/components/ui/WorkSliderBtns";
 
 const projects = [
@@ -22,10 +21,13 @@ const projects = [
     title: "project 1",
     description:
       "Analyzing and visualizing HR data to generate insights on employee performance and retention",
-    stack: [{ name: "Python" }, { name: "Microsoft Excel" }, { name: "Power BI" }],
+    stack: [
+      { name: "Python" },
+      { name: "Microsoft Excel" },
+      { name: "Power BI" },
+    ],
     image: "/projects/p1.png",
     github: "https://github.com/sahilsekh05/Human-Resources-Analyst",
-    linkedin: "",
   },
   {
     num: "02",
@@ -33,37 +35,53 @@ const projects = [
     title: "project 2",
     description:
       "Analyzing pizza sales data to identify trends and make data-driven decisions",
-    stack: [{ name: "MySQL" }, { name: "Microsoft Excel" }, { name: "Power BI" }],
+    stack: [
+      { name: "MySQL" },
+      { name: "Microsoft Excel" },
+      { name: "Power BI" },
+    ],
     image: "/projects/p2.png",
     github: "https://github.com/sahilsekh05/Pizza-Sales-Dashboard",
-    linkedin: "",
   },
   {
     num: "03",
     category: "Top Instagram Influencers Data Analysis",
     title: "project 3",
     description:
-      "Analyzing data of top Instagram influencers to identify patterns and trends in their content and engagement",
+      "Analyzing data of top Instagram influencers to identify patterns and trends in engagement",
     stack: [{ name: "Power BI" }, { name: "Microsoft Excel" }],
     image: "/projects/p3.png",
     github: "https://github.com/sahilsekh05/Top_Instagram_Influencer",
-    linkedin: "",
   },
   {
     num: "04",
-    category: "Kong Head",
+    category: "Olist Ecommerce Analysis",
     title: "project 4",
     description:
-      "Co-founded and managed data operations, training, and analytics projects to improve workflow efficiency and team performance.",
+      "End-to-end e-commerce analysis using SQL and Power BI to uncover insights on revenue, customer behavior, and product performance.",
     stack: [
-      { name: "Operation lead" },
-      { name: "Trainer" },
-      { name: "Data labeling" },
-      { name: "Team management" },
+      { name: "SQL" },
+      { name: "Power BI" },
+      { name: "Excel" },
     ],
     image: "/projects/p4.png",
-    github: "", // leave blank
-    linkedin: "https://www.linkedin.com/company/kong-head-technology-pvt-ltd/posts/?feedView=all", // <-- your LinkedIn link
+    github: "https://github.com/sahilsekh05/olist-ecommerce-analysis",
+  },
+  {
+    num: "05",
+    category: "E-commerce Data Analysis Dashboard",
+    title: "project 5",
+    description:
+      "Built an end-to-end analytics solution using PostgreSQL, Docker, and Power BI. Designed data models, created KPIs using DAX, and developed an interactive dashboard to analyze sales, customers, and product performance.",
+    stack: [
+      { name: "PostgreSQL" },
+      { name: "Docker" },
+      { name: "SQL" },
+      { name: "Power BI" },
+      { name: "DAX" },
+    ],
+    image: "/projects/p5.jpg", // add your image here
+    github: "https://github.com/sahilsekh05/E-commerce-Analysis", // update if needed
   },
 ];
 
@@ -86,19 +104,19 @@ const Work = () => {
     >
       <div className="container mx-auto">
         <div className="flex flex-col xl:flex-row xl:gap-[30px]">
-          {/* Left side: Text info */}
+          {/* Left side */}
           <div className="w-full xl:w-[50%] xl:h-[460px] flex flex-col xl:justify-between order-2 xl:order-none">
             <div className="flex flex-col gap-[30px] h-[50%]">
               <div className="text-8xl leading-none font-extrabold text-transparent text-outline">
                 {project.num}
               </div>
-              <h2
-                className="text-[42px] font-bold leading-none text-white group-hover:text-accent transition-all 
-                            duration-500 capitalize"
-              >
+
+              <h2 className="text-[42px] font-bold leading-none text-white transition-all duration-500 capitalize">
                 {project.category}
               </h2>
+
               <p className="text-white/60">{project.description}</p>
+
               <ul className="flex gap-4 flex-wrap">
                 {project.stack.map((item, index) => (
                   <li key={index} className="text-xl text-accent">
@@ -107,50 +125,28 @@ const Work = () => {
                   </li>
                 ))}
               </ul>
+
               <div className="border border-white/20"></div>
 
-              {/* Icon Section */}
+              {/* GitHub Icon (for all projects) */}
               <div className="flex items-center gap-4">
-                {project.num === "04" ? (
-                  // 🔹 LinkedIn icon for 4th project
-                  <a href={project.linkedin} target="_blank" rel="noopener noreferrer">
-                    <TooltipProvider delayDuration={100}>
-                      <Tooltip>
-                        <TooltipTrigger
-                          className="w-[70px] h-[70px] rounded-full
-                          bg-white/5 flex justify-center items-center group"
-                        >
-                          <BsLinkedin className="text-white text-3xl group-hover:text-accent" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>LinkedIn Profile</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </a>
-                ) : (
-                  // 🔹 GitHub icon for others
-                  <a href={project.github} target="_blank" rel="noopener noreferrer">
-                    <TooltipProvider delayDuration={100}>
-                      <Tooltip>
-                        <TooltipTrigger
-                          className="w-[70px] h-[70px] rounded-full
-                          bg-white/5 flex justify-center items-center group"
-                        >
-                          <BsGithub className="text-white text-3xl group-hover:text-accent" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>GitHub Repository</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </a>
-                )}
+                <a href={project.github} target="_blank" rel="noopener noreferrer">
+                  <TooltipProvider delayDuration={100}>
+                    <Tooltip>
+                      <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">
+                        <BsGithub className="text-white text-3xl group-hover:text-accent" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>GitHub Repository</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </a>
               </div>
             </div>
           </div>
 
-          {/* Right side: Image Slider */}
+          {/* Right side */}
           <div className="w-full xl:w-[50%]">
             <Swiper
               spaceBetween={30}
@@ -159,12 +155,13 @@ const Work = () => {
               onSlideChange={handleSlideChange}
             >
               {projects.map((item, index) => (
-                <SwiperSlide key={index} className="w-full">
+                <SwiperSlide key={index}>
                   <div
-                    className="h-[520px] relative group flex justify-center items-center"
+                    className="h-[520px] relative flex justify-center items-center"
                     style={{ backgroundColor: "rgb(28, 28, 34)" }}
                   >
                     <div className="absolute top-0 bottom-0 w-full h-full bg-primary/10 z-10"></div>
+
                     <div className="relative w-full h-full overflow-hidden">
                       <Image
                         src={item.image}
@@ -177,13 +174,9 @@ const Work = () => {
                 </SwiperSlide>
               ))}
 
-              {/* Slider navigation buttons */}
               <WorkSliderBtns
-                containerStyles="flex gap-2 absolute right-0 bottom-[calc(50%_-_22px)] xl:bottom-0 z-20
-                                w-full justify-between xl:w-max xl:justify-none"
-                btnStyles="bg-accent hover:bg-accent-hover text-primary
-                                text-[22px] w-[44px] h-[44px] flex justify-center items-center 
-                                transition-all"
+                containerStyles="flex gap-2 absolute right-0 bottom-[calc(50%_-_22px)] xl:bottom-0 z-20 w-full justify-between xl:w-max xl:justify-none"
+                btnStyles="bg-accent hover:bg-accent-hover text-primary text-[22px] w-[44px] h-[44px] flex justify-center items-center transition-all"
               />
             </Swiper>
           </div>
